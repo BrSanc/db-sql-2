@@ -1,0 +1,54 @@
+1.- 
+	select students.name, students.surname , degrees.name 
+	from degrees 
+	join students on students.degree_id = degrees.id 
+	where degrees.name = 'Corso di Laurea in Economia'
+2.-
+	select departments.name , degrees.name, degrees.`level` 
+	from departments
+	join degrees on departments.id = degrees.department_id 
+	where degrees.level = 'magistrale' and departments.name 	='Dipartimento di Neuroscienze'
+3.-
+	select distinct teachers.name , teachers.surname , 	degrees.name 
+	from teachers
+	join  course_teacher on course_teacher.teacher_id = teachers.id 
+	join courses on course_teacher.course_id = course_id 
+	join degrees on courses.degree_id = degrees.id 
+	where teachers.name = 'Fulvio' and teachers.surname = 'Amato'
+4.-
+	select students.surname , students.name , degrees.name, degrees.level , departments.name  
+	from students
+	join degrees on students.degree_id = degrees.id 
+	join departments on degrees.department_id = departments.id 
+	order by students.surname, students.name 
+5.-
+	
+6.-
+	select distinct teachers.name , teachers.surname , degrees.name , departments.name  
+	from teachers
+	join  course_teacher on course_teacher.teacher_id = teachers.id 
+	join courses on course_teacher.course_id = course_id 
+	join degrees on courses.degree_id = degrees.id
+	join departments on degrees.department_id = departments.id 
+	where departments.name = 'Dipartimento di Matematica'
+Group By
+
+1.-
+	select year(enrolment_date) as year, count(id)
+	from students s 
+	group by year;
+2.-
+	select office_address , count(id)
+	from teachers 
+	group by office_address 
+3.-	
+	select student_id , count(vote)
+	from exam_student es 
+	group by student_id 
+	
+4.-
+	select d.department_id, d2.name, count(*)
+	from degrees d 
+	join departments d2 on d.department_id = d2.id 
+	group by d.department_id; 
+		
